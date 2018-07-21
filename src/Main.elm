@@ -35,6 +35,12 @@ view model =
         [ h1 [ class "main-title" ] [ text "Trees Against Humanity" ]
         , questionCard "This is some card, huh?"
         , answerCard "And this is another awesome card."
+        , div [ class "hand-container" ]
+            [ answerCard "And this."
+            , answerCard "Is my."
+            , answerCard "Handsome hand."
+            , answerCard "Of cards."
+            ]
         ]
 
 

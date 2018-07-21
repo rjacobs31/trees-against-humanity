@@ -9,6 +9,10 @@
   font-size: 48px;
 }
 
+.hand-container {
+  width: 100%;
+}
+
 .card {
   background-color: #000000;
   border: #888888 1px solid;
@@ -25,4 +29,13 @@
 .card--answer {
   background-color: #ffffff;
   color: #000000;
+}
+
+.hand-container .card {
+  border-radius: 4px;
+  display: inline-block;
+  height: 120px;
+  font-size: 8px;
+  padding: 8px;
+  width: 90px;
 }
