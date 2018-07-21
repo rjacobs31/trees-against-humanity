@@ -5,6 +5,7 @@
 
 .main-title {
   color: #000000;
+  font-family: 'Open Sans', sans-serif;
   font-size: 48px;
 }
 
@@ -14,6 +15,7 @@
   border-radius: 8px;
   box-sizing: border-box;
   color: #000000;
+  font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   height: 240px;
   padding: 16px;
