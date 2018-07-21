@@ -1,9 +1,14 @@
-module Widgets exposing (whiteCard)
+module Widgets exposing (questionCard, answerCard)
 
 import Html exposing (Attribute, Html, div, text)
 import Html.Attributes exposing (class)
 
 
-whiteCard : String -> Html msg
-whiteCard message =
+questionCard : String -> Html msg
+questionCard message =
     div [ class "card" ] [ text message ]
+
+
+answerCard : String -> Html msg
+answerCard message =
+    div [ class "card card--answer" ] [ text message ]

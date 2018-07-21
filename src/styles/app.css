@@ -10,14 +10,19 @@
 }
 
 .card {
-  background-color: #ffffff;
+  background-color: #000000;
   border: #888888 1px solid;
   border-radius: 8px;
   box-sizing: border-box;
-  color: #000000;
+  color: #ffffff;
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   height: 240px;
   padding: 16px;
   width: 180px;
+}
+
+.card--answer {
+  background-color: #ffffff;
+  color: #000000;
 }

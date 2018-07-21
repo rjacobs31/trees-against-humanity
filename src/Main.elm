@@ -2,7 +2,7 @@ module Main exposing (..)
 
 import Html exposing (Html, div, h1, program, text)
 import Html.Attributes exposing (class)
-import Widgets exposing (whiteCard)
+import Widgets exposing (answerCard, questionCard)
 
 
 -- MODEL
@@ -33,7 +33,8 @@ view : Model -> Html Msg
 view model =
     div [ class "content" ]
         [ h1 [ class "main-title" ] [ text "Trees Against Humanity" ]
-        , whiteCard "This is some card, huh?"
+        , questionCard "This is some card, huh?"
+        , answerCard "And this is another awesome card."
         ]
 
 
