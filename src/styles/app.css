@@ -5,13 +5,44 @@
 
 .main-title {
   color: #000000;
+  display: block;
   font-family: 'Open Sans', sans-serif;
   font-size: 48px;
 }
 
-.hand-container {
+
+/* Play area */
+
+.play-area {
+  box-sizing: border-box;
+  display: block;
+  font-size: 0;
+  margin-bottom: 24px;
   width: 100%;
 }
+
+.play-area__heading {
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 24px;
+  margin: 6px 0;
+}
+
+.play-area__card-container {
+  box-sizing: border-box;
+  display: block;
+  font-size: 0;
+  min-height: 240px;
+  overflow-x: scroll;
+  width: 100%;
+}
+
+.play-area__card-container--hand-container {
+  min-height: 120px;
+}
+
+
+/* Cards */
 
 .card {
   background-color: #000000;
@@ -23,6 +54,7 @@
   font-size: 16px;
   height: 240px;
   padding: 16px;
+  vertical-align: top;
   width: 180px;
 }
 
@@ -31,11 +63,14 @@
   color: #000000;
 }
 
-.hand-container .card {
-  border-radius: 4px;
+.play-area__card-container .card {
   display: inline-block;
+}
+
+.play-area__card-container--hand-container .card {
+  border-radius: 4px;
   height: 120px;
-  font-size: 8px;
+  font-size: 12px;
   padding: 8px;
   width: 90px;
 }
