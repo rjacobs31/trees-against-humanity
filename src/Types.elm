@@ -1,6 +1,7 @@
 module Types exposing (..)
 
 import Authentication.Types as Auth
+import Http
 
 
 type alias Model =
@@ -11,6 +12,8 @@ type alias Model =
 
 type Msg
     = Authentication Auth.Msg
+    | TestRequest Auth.Token
+    | TestResponse (Result Http.Error String)
 
 
 type Page

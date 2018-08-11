@@ -24,6 +24,7 @@ viewLoggedIn user model =
         [ h1 [ class "main-title" ] [ text "Trees Against Humanity" ]
         , text "Yay! You're logged in!"
         , button [ onClick (Authentication Auth.Logout) ] [ text "Logout" ]
+        , button [ onClick (TestRequest user.token) ] [ text "Test" ]
         , viewCards
         ]
 
