@@ -11,11 +11,11 @@ var mountNode = document.getElementById('main');
 var app = Elm.Main.embed(mountNode);
 
 var webAuth = new auth0.WebAuth({
-  domain: '[AUTH0_DOMAIN]', // e.g., you.auth0.com
-  clientID: '[AUTH0_CLIENT_ID]',
+  domain: 'tinyscythe.eu.auth0.com', // e.g., you.auth0.com
+  clientID: 'Ab9GsMWoZPvST5bwDBJAYQHOSv0JvFbp',
   scope: 'email',
   responseType: 'token',
-  redirectUri: '[AUTH0_REDIRECT_URI]'
+  redirectUri: 'http://localhost:3000'
 });
 
 app.ports.auth0authorise.subscribe(function(opts) {
@@ -28,7 +28,7 @@ webAuth.parseHash({ hash: window.location.hash }, function(err, authResult) {
     result.err = err;
   }
   if (authResult) {
-    result.ok = {token: authResult.authToken}
+    result.ok = {token: authResult.accessToken}
   }
   app.ports.auth0authResult.send(result);
 });
