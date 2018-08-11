@@ -13,6 +13,7 @@ var app = Elm.Main.embed(mountNode);
 var webAuth = new auth0.WebAuth({
   domain: 'tinyscythe.eu.auth0.com', // e.g., you.auth0.com
   clientID: 'Ab9GsMWoZPvST5bwDBJAYQHOSv0JvFbp',
+  audience: 'https://tinyscythe.co.za/treesagainsthumanity/',
   scope: 'email',
   responseType: 'token',
   redirectUri: 'http://localhost:3000'
