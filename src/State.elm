@@ -11,6 +11,7 @@ init =
     let
         model =
             { auth = AuthState.init auth0authorise
+            , pageState = TransitioningFrom Blank
             }
     in
         ( model, Cmd.none )
