@@ -1,5 +1,8 @@
-module Main exposing (..)
+port module Main exposing (..)
 
+import Authentication.Types as Auth
+import Authentication.Util as AuthUtil
+import Authentication.State as AuthState
 import Html exposing (program)
 import Types exposing (..)
 import View exposing (view)
@@ -7,7 +10,7 @@ import View exposing (view)
 
 init : ( Model, Cmd Msg )
 init =
-    ( Model, Cmd.none )
+    ( { auth = AuthState.init auth0authorise }, Cmd.none )
 
 
 main : Program Never Model Msg
@@ -21,14 +24,28 @@ main =
 
 
 
+-- PORTS
+
+
+port auth0authorise : Auth.Options -> Cmd msg
+
+
+port auth0authResult : (Auth.RawAuthenticationResult -> msg) -> Sub msg
+
+
+
 -- UPDATE
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        NoOp ->
-            ( model, Cmd.none )
+        Authentication authMsg ->
+            let
+                ( innerModel, innerMsg ) =
+                    AuthState.update authMsg model.auth
+            in
+                ( { model | auth = innerModel }, Cmd.map Authentication innerMsg )
 
 
 
@@ -37,4 +54,4 @@ update msg model =
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.none
+    auth0authResult (AuthUtil.mapResult >> Auth.AuthenticationResult >> Authentication)
