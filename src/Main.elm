@@ -10,7 +10,7 @@ import View exposing (view)
 
 init : ( Model, Cmd Msg )
 init =
-    ( { auth = AuthState.init auth0authorise }, auth0authorise {} )
+    ( { auth = AuthState.init auth0authorise }, Cmd.none )
 
 
 main : Program Never Model Msg

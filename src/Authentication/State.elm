@@ -21,7 +21,7 @@ update msg model =
             ( { model | lastError = Just error }, Cmd.none )
 
         Login ->
-            ( model, Cmd.none )
+            ( model, model.authorise {} )
 
         Logout ->
             ( { model | state = LoggedOut }, Cmd.none )
