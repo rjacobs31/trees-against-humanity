@@ -54,9 +54,8 @@ type alias Token =
 
 
 type alias AuthenticationError =
-    { name : Maybe String
-    , code : Maybe String
-    , description : String
+    { error : Maybe String
+    , errorDescription : Maybe String
     , statusCode : Maybe Int
     }
 

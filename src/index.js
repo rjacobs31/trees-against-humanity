@@ -26,6 +26,7 @@ webAuth.parseHash({ hash: window.location.hash }, function(err, authResult) {
   var result = { err: null, ok: null };
   if (err) {
     result.err = err;
+    result.err.statusCode = result.err.statusCode ? result.err.statusCode : null;
   }
   if (authResult) {
     result.ok = {token: authResult.accessToken}

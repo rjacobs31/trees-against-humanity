@@ -10,7 +10,11 @@ mapResult result =
             Err msg
 
         ( Nothing, Nothing ) ->
-            Err { name = Nothing, code = Nothing, statusCode = Nothing, description = "No information was received from the authentication provider" }
+            Err
+                { error = Nothing
+                , errorDescription = Just "No information was received from the authentication provider"
+                , statusCode = Nothing
+                }
 
         ( Nothing, Just user ) ->
             Ok user
