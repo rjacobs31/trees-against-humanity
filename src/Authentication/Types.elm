@@ -5,6 +5,7 @@ type alias Model =
     { state : AuthenticationState
     , lastError : Maybe AuthenticationError
     , authorise : Options -> Cmd Msg
+    , logout : Options -> Cmd Msg
     }
 
 

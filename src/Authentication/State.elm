@@ -3,11 +3,12 @@ module Authentication.State exposing (init, update)
 import Authentication.Types exposing (..)
 
 
-init : (Options -> Cmd Msg) -> Model
-init auth =
+init : (Options -> Cmd Msg) -> (Options -> Cmd Msg) -> Model
+init auth logout =
     { state = LoggedOut
     , lastError = Nothing
     , authorise = auth
+    , logout = logout
     }
 
 

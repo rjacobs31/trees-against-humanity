@@ -11,7 +11,7 @@ init : ( Model, Cmd Msg )
 init =
     let
         model =
-            { auth = AuthState.init auth0authorise
+            { auth = AuthState.init auth0authorise auth0logout
             , pageState = TransitioningFrom Blank
             }
     in
@@ -71,3 +71,6 @@ port auth0authorise : Auth.Options -> Cmd msg
 
 
 port auth0authResult : (Auth.RawAuthenticationResult -> msg) -> Sub msg
+
+
+port auth0logout : Auth.Options -> Cmd msg
