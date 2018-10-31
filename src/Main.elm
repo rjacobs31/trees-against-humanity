@@ -1,16 +1,58 @@
-module Main exposing (..)
+module Main exposing (main)
 
-import Html exposing (program)
-import State exposing (init, subscriptions, update)
-import Types exposing (..)
-import View exposing (view)
+import Browser exposing (Document)
+import Browser.Navigation exposing (Key)
+import Html exposing (Html, div, text)
+import Url exposing (Url)
 
 
-main : Program Never Model Msg
+type alias Model =
+    {}
+
+
+type Msg
+    = ChangedUrl Url
+    | ClickedLink Browser.UrlRequest
+
+
+main : Program () Model Msg
 main =
-    program
+    Browser.application
         { init = init
         , view = view
         , update = update
         , subscriptions = subscriptions
+        , onUrlRequest = ClickedLink
+        , onUrlChange = ChangedUrl
         }
+
+
+init : () -> Url -> Key -> ( Model, Cmd Msg )
+init flags url key =
+    ( {}, Cmd.none )
+
+
+view : Model -> Document Msg
+view model =
+    { title = "Blarg"
+    , body =
+        [ div []
+            [ text "Here's an empty web app"
+            ]
+        ]
+    }
+
+
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case msg of
+        ChangedUrl _ ->
+            ( model, Cmd.none )
+
+        ClickedLink _ ->
+            ( model, Cmd.none )
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Sub.none
