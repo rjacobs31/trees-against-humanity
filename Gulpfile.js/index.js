@@ -1,35 +1,36 @@
 const { dest, parallel, series, src, watch } = require('gulp')
 
-const gulpClean = require('gulp-clean')
+const clean = require('gulp-clean')
+const livereload = require('gulp-livereload')
 const elm = require('gulp-elm')
 const rename = require('gulp-rename')
 
 function defaultExec() {
-    return series(clean(), build())
+    return series(cleanTask(), build())
 }
 
-function clean() {
+function cleanTask() {
     return parallel(cleanElm, cleanHtml, cleanScripts, cleanStyles)
 }
 
 function cleanElm() {
     return src(['dist/js/elm.js'])
-        .pipe(gulpClean())
+        .pipe(clean())
 }
 
 function cleanHtml() {
     return src(['dist/**/*.html'])
-        .pipe(gulpClean())
+        .pipe(clean())
 }
 
 function cleanScripts() {
     return src(['dist/**/*.js', '!dist/js/elm.js'])
-        .pipe(gulpClean())
+        .pipe(clean())
 }
 
 function cleanStyles() {
     return src(['dist/**/*.css'])
-        .pipe(gulpClean())
+        .pipe(clean())
 }
 
 function build() {
@@ -39,16 +40,19 @@ function build() {
 function html() {
     return src('client/**/*.html')
         .pipe(dest('dist/'))
+        .pipe(livereload())
 }
 
 function scripts() {
     return src('client/**/*.js')
         .pipe(dest('dist/'))
+        .pipe(livereload())
 }
 
 function styles() {
     return src('client/**/*.css')
         .pipe(dest('dist/'))
+        .pipe(livereload())
 }
 
 function transpile() {
@@ -56,21 +60,19 @@ function transpile() {
         .pipe(elm())
         .pipe(rename(path => path.basename = 'elm'))
         .pipe(dest('dist/js/'))
+        .pipe(livereload())
 }
 
 function watchAll() {
-    return watch(
-        [
-            'client/**/*.html',
-            'client/**/*.js',
-            'client/**/*.css',
-            'client/**/*.elm'
-        ],
-        series(clean(), build())
-    )
+    livereload.listen({basePath: 'dist/', port: 35729, start: true})
+
+    watch('client/**/*.elm', series(cleanElm, transpile))
+    watch('client/**/*.html', series(cleanHtml, html))
+    watch('client/**/*.js', series(cleanScripts, scripts))
+    watch('client/**/*.css', series(cleanStyles, styles))
 }
 
-exports.clean = clean()
+exports.clean = cleanTask()
 exports.build = build()
 exports.html = html
 exports.scripts = scripts
