@@ -9,15 +9,18 @@
   <body>
     <div id="main"></div>
     <script type="text/javascript" src="/js/elm.js" ></script>
+    <script type="text/javascript" src="/js/PortFunnel.js" ></script>
     <script type="text/javascript">
       var mountNode = document.getElementById('main')
       
       // .embed() can take an optional second argument. This would be an object describing the data we need to start a program, i.e. a userID or some token
-      Elm['Main'].init(mountNode)
+      var app = Elm['Main'].init({node: mountNode})
+
+      PortFunnel.subscribe(app, {modules: ['WebSocket']});
     </script>
     <script>
       document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
       ':35729/livereload.js?snipver=1"></' + 'script>')
-    </script> 
+    </script>
   </body>
 </html>

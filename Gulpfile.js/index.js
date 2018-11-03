@@ -14,22 +14,22 @@ function cleanTask() {
 }
 
 function cleanElm() {
-    return src(['dist/js/elm.js'])
+    return src(['dist/js/elm.js'], {allowEmpty: true})
         .pipe(clean())
 }
 
 function cleanHtml() {
-    return src(['dist/**/*.html'])
+    return src(['dist/**/*.html'], {allowEmpty: true})
         .pipe(clean())
 }
 
 function cleanScripts() {
-    return src(['dist/**/*.js', '!dist/js/elm.js'])
+    return src(['dist/**/*.js', '!dist/js/elm.js'], {allowEmpty: true})
         .pipe(clean())
 }
 
 function cleanStyles() {
-    return src(['dist/**/*.css'])
+    return src(['dist/**/*.css'], {allowEmpty: true})
         .pipe(clean())
 }
 
@@ -66,10 +66,10 @@ function transpile() {
 function watchAll() {
     livereload.listen({basePath: 'dist/', port: 35729, start: true})
 
-    watch('client/**/*.elm', series(cleanElm, transpile))
-    watch('client/**/*.html', series(cleanHtml, html))
-    watch('client/**/*.js', series(cleanScripts, scripts))
-    watch('client/**/*.css', series(cleanStyles, styles))
+    watch('client/**/*.elm', { ignoreInitial: false }, series(cleanElm, transpile))
+    watch('client/**/*.html', { ignoreInitial: false }, series(cleanHtml, html))
+    watch('client/**/*.js', { ignoreInitial: false }, series(cleanScripts, scripts))
+    watch('client/**/*.css', { ignoreInitial: false }, series(cleanStyles, styles))
 }
 
 exports.clean = cleanTask()
