@@ -8,6 +8,12 @@
   </head>
   <body>
     <div id="main"></div>
-    <script src="app.js"></script>
+    <script type="text/javascript" src="/js/elm.js" ></script>
+    <script>
+      var mountNode = document.getElementById('main')
+      
+      // .embed() can take an optional second argument. This would be an object describing the data we need to start a program, i.e. a userID or some token
+      Elm['Main'].init(mountNode)
+    </script>
   </body>
 </html>

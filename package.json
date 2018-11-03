@@ -1,8 +1,13 @@
 {
-  "dependencies": {},
+  "dependencies": {
+    "gulp-clean": "^0.4.0",
+    "gulp-elm": "^0.8.1",
+    "gulp-rename": "^1.4.0"
+  },
   "scripts": {
-    "build": "webpack",
-    "client": "webpack-dev-server --mode=development --port=3000",
-    "start": "nf start"
+    "build": "gulp clean build"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.0"
   }
 }
